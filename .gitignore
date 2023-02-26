@@ -1,0 +1,13 @@
+.classpath
+.factorypath
+.project
+.settings/
+CATALINA_HOME_IS_UNDEFINED/
+target/
+/.metadata/
+*.classpath
+*.factorypath
+*.project
+quiz-service/.settings/
+*.log
+quiz-service/target/

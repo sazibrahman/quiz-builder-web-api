@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  quiz-service-dev-001:
+    build: ./quiz-service
+    image: quiz-service
+    container_name: quiz-service-dev-001
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://quiz-builder-mysql-dev:3306/quiz_builder
+    ports:
+      - 8080:8080
+    restart: always
+    networks:
+      - quiz-mysql
+    depends_on:
+      - quiz-builder-mysql-dev
+  
+  quiz-service-dev-002:
+    build: ./quiz-service
+    image: quiz-service
+    container_name: quiz-service-dev-002
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://quiz-builder-mysql-dev:3306/quiz_builder
+    ports:
+      - 8081:8080
+    restart: always
+    networks:
+      - quiz-mysql
+    depends_on:
+      - quiz-builder-mysql-dev
+      
+  quiz-builder-mysql-dev:
+    image: mysql:8.0
+    container_name: quiz-builder-mysql-dev
+    environment:
+      - MYSQL_ROOT_PASSWORD=SSDAD6FSA6GSAZDFSA
+      - MYSQL_USER=quiz_builder_user
+      - MYSQL_PASSWORD=SSDAD6FSA6GSAZDFSA
+      - MYSQL_DATABASE=quiz_builder
+    ports:
+      - 3306:3306
+    restart: always
+    networks:
+      - quiz-mysql
+
+networks:
+  quiz-mysql:
+    driver: bridge

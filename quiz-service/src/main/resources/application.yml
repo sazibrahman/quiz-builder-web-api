@@ -1,0 +1,35 @@
+server:
+   port: 8080
+   
+jwt:
+  header: Authorization
+  type: Bearer
+  secret: Nl4gBqDhTVVhKGrf2WFgHJram2UeVCfnv1ONRFf3YLpbCBgvyuy21h50p6XKCIg
+  refresh: 60000
+  expiration: 600000
+
+spring:
+  mobile.devicedelegatingviewresolver.enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://quiz-builder-mysql-dev:3306/quiz_builder
+    username: quiz_builder_user
+    password: SSDAD6FSA6GSAZDFSA
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      jdbc:
+        time_zone: UTC
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      naming-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+
